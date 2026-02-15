@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glass New Tab Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif;}
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:clamp(24px, 6vh, 72px) clamp(16px, 4vw, 24px);
+      background-color:#000;
+      background-image:url('background.png');
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      overflow:auto;
+      position:relative;
+    }
+
+    .container{
+      width:min(90%, 520px);
+      max-width:520px;
+      text-align:center;
+      padding:clamp(28px, 4vw, 44px) clamp(20px, 4vw, 34px);
+      border-radius:clamp(24px, 4vw, 34px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+      border:1px solid rgba(255,255,255,0.28);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      box-shadow:0 28px 90px rgba(0,0,0,0.55);
+    }
+
+    .logo{
+      font-size:clamp(24px, 4.8vw, 38px);
+      font-weight:800;
+      letter-spacing:-0.3px;
+      color:#fff;
+      line-height:1.05;
+      margin-bottom:clamp(10px, 2.5vw, 14px);
+    }
+
+    .logo-image-wrapper{
+      width:clamp(96px, 20vw, 140px);
+      height:clamp(96px, 20vw, 140px);
+      margin:0 auto clamp(12px, 3vw, 20px) auto;
+      border-radius:50%;
+      overflow:hidden;
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 20px 50px rgba(0,0,0,0.4);
+      border:1px solid rgba(255,255,255,0.3);
+    }
+
+    .logo-image{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .subtitle{
+      font-size:clamp(12px, 2.6vw, 16px);
+      font-weight:600;
+      color:rgba(255,255,255,0.85);
+      margin-bottom:clamp(18px, 4vw, 30px);
+    }
+
+    .socials{
+      display:flex;
+      justify-content:center;
+      gap:clamp(8px, 2.5vw, 12px);
+      margin:clamp(8px, 2.5vw, 12px) 0 clamp(18px, 4vw, 26px) 0;
+      flex-wrap:wrap;
+    }
+
+    .social-link{
+      width:clamp(38px, 8vw, 46px);
+      height:clamp(38px, 8vw, 46px);
+      border-radius:clamp(10px, 3vw, 14px);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      font-weight:800;
+      font-size:14px;
+      letter-spacing:0.4px;
+      color:#fff;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.35);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      transition:transform 200ms ease, background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    }
+
+    .social-link img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+      filter:brightness(0) invert(1);
+      opacity:0.95;
+    }
+
+    .social-link:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.18);
+      border-color:rgba(255,255,255,0.45);
+      box-shadow:0 14px 30px rgba(0,0,0,0.25);
+    }
+
+    .button{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      width:100%;
+      padding:clamp(12px, 2.6vw, 16px) clamp(14px, 3vw, 18px);
+      margin-bottom:clamp(12px, 3vw, 16px);
+      border-radius:clamp(14px, 3.5vw, 18px);
+      text-decoration:none;
+      font-weight:800;
+      font-size:clamp(14px, 3.4vw, 18px);
+      color:#fff;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.35);
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+      transition:transform 220ms ease, background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .button:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,0.18);
+      border-color:rgba(255,255,255,0.45);
+      box-shadow:0 18px 40px rgba(0,0,0,0.25);
+    }
+
+    .button img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+      display:block;
+      filter:brightness(0) invert(1);
+      opacity:0.95;
+    }
+
+    .footer{
+      margin-top:clamp(12px, 3vw, 18px);
+      font-size:clamp(11px, 2.4vw, 13px);
+      font-weight:600;
+      color:rgba(255,255,255,0.75);
+    }
+
+    @media (max-height: 720px){
+      body{padding:clamp(16px, 4vh, 40px) clamp(12px, 3vw, 20px);}
+      .logo-image-wrapper{width:clamp(84px, 18vw, 120px);height:clamp(84px, 18vw, 120px);}
+      .subtitle{margin-bottom:clamp(14px, 3vw, 22px);}
+      .socials{margin:clamp(6px, 2vw, 10px) 0 clamp(14px, 3vw, 20px) 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-image-wrapper">
+      <img src="logo.png" alt="GNTD Logo" class="logo-image" />
+    </div>
+    <div class="logo">Glass New Tab Dashboard</div>
+    <div class="subtitle">Install on your favorite browser</div>
+
+    <a class="button" href="https://chromewebstore.google.com/detail/iphblfpnippelmibidfaejanmnhcjdee?utm_source=item-share-cb" target="_blank" rel="noopener">
+      <img src="google.png" alt="Chrome" />
+      <span>Install on Chrome</span>
+    </a>
+
+    <a class="button" href="https://microsoftedge.microsoft.com/addons/detail/glass-new-tab-dashboard/bmdpicpbgoeeibnapgjbdmmfhcalmedl" target="_blank" rel="noopener">
+      <img src="microsoft.png" alt="Edge" />
+      <span>Install on Edge</span>
+    </a>
+    <!--<a class="button" href="YOUR_FIREFOX_LINK" target="_blank" rel="noopener">
+      <img src="firefox.png" alt="Firefox" />
+      <span>Install on Firefox</span>
+    </a>
+    <a class="button" href="YOUR_OPERA_LINK" target="_blank" rel="noopener">
+      <img src="opera.png" alt="Opera" />
+      <span>Install on Opera</span>
+    </a>-->
+  <a class="button" href="https://chromewebstore.google.com/detail/iphblfpnippelmibidfaejanmnhcjdee?utm_source=item-share-cb" target="_blank" rel="noopener">
+    <img src="lion.png" alt="Brave" />
+    <span>Install on Brave</span>
+  </a>
+
+    <div class="socials">
+      <a class="social-link" href="https://www.tiktok.com/@isma_co0" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="tik-tok.png" alt="TikTok" />
+      </a>
+      <a class="social-link" href="https://www.instagram.com/isma_co01/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="instagram.png" alt="Instagram" />
+      </a>
+      <a class="social-link" href="https://x.com/Isma_co01" target="_blank" rel="noopener" aria-label="X">
+        <img src="twitter-alt.png" alt="X" />
+      </a>
+      <a class="social-link" href="https://www.youtube.com/@Isma_co" target="_blank" rel="noopener" aria-label="YouTube">
+        <img src="youtube.png" alt="YouTube" />
+      </a>
+    </div>
+    <div class="footer">© 2026 Glass New Tab Dashboard</div>
+  </div>
+</body>
+</html>
